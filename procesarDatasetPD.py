@@ -1,5 +1,3 @@
-import os
-import pathlib
 import pandas as pd
 
 def preparar_dataset():
@@ -12,27 +10,41 @@ def preparar_dataset():
     archivo = "lista_de_personajes_estadisticas_pd.csv"
     
     try:
-        #abrimos el csv y lo almacenamos como DataFrame en data
-        data = pd.read_csv(archivo_entrada)
+        #abrimos el csv y lo almacenamos como DataFrame en df
+        df = pd.read_csv(archivo_entrada)
         #Quitamos las columnas innecesarias
-        data = data.drop(columns=['Alignment'])
+        df = df.drop(columns=['Alignment'])
         #Limpiamos las filas con valores vacíos
-        data = data.dropna()
-        #Seleccionar solo los que están en la lista solicitada
+        df = df.dropna()
+
         #creamos nuevo csv
-        data.to_csv(archivo , index=False)
+        df.to_csv(archivo , index=False)
     except FileNotFoundError:
         print('ERROR: No se ha encontrado el archivo.')
 
 def crear_lista_personajes(nombre_Archivo, una_lista_personajes):
-    df = pd.read_csv(nombre_Archivo)
+    df = pd.read_csv(nombre_Archivo)  
+    #Correjir características de algunos personajes
+    df.at[162,'Speed']=90
+    df.at[376,'Intelligence']=70
+    df.at[376,'Speed'] = 90
+    df.at[419,'Strength'] = 65
+    df.at[419,'Speed'] = 60
+    df.at[301,'Intelligence']=150
+    #setteamos el poder total con una fórmula propia
+    fuerza = df['Strength']
+    velocidad = df['Speed']
+    inteligencia = df['Intelligence']
+    poder = df['Power']
+    combate = df['Combat']
+    df['Total'] = (fuerza+velocidad+combate)*(inteligencia+poder)
+     
     return df.loc[df['Name'].isin(una_lista_personajes)]
 
-archivo = "lista_de_personajes_estadisticas_pd.csv"
-personajes_DC = ['Superman','Batman','Flash III','Aquaman','Robin I','Joker','Penguin','Cyborg','Darkseid','Wonder Woman','Doomsday','Hal Jordan','Elastic Man']
-personajes_Marvel =['Thor','Hulk','Wolverine','Magneto','Spider-Man','Iron Man','Captain America','Doctor Strange','Loki','Nick Fury','Professor X','Black Widow','Phoenix','Venom','Scarlet Witch','Kang']
-#preparar_dataset()
-data_DC = crear_lista_personajes(archivo,personajes_DC)
-data_Marvel = crear_lista_personajes(archivo,personajes_Marvel)
-print(data_DC)
-print(data_Marvel)
+def elegir_personaje(nombre_personaje,data):
+
+    personaje = data.loc[data.Name == nombre_personaje]
+
+    return personaje
+
+preparar_dataset()
