@@ -11,9 +11,9 @@ def texto_golpe (jug,golpe):
 
 def turno (atacante,defensor):
     golpe = 0
-    if ((atacante['Speed'].values[0]+random.randrange(0,50)) >= defensor['Speed'].values[0]):
+    if ((atacante['Speed'].values[0]+random.randrange(0,100)) >= defensor['Speed'].values[0]):
         if (atacante['Total'].values[0]*random.randrange(1,5) > defensor['Total'].values[0]*2):
-            golpe = (atacante['Strength'].values[0]/2) + random.randrange(0,20)
+            golpe = ((atacante['Strength'].values[0]+atacante['Combat'].values[0])/2) + random.randrange(0,20)
     return max(golpe,0)
 
 def ganador (jug1,jug2,vida_jug1):
@@ -30,8 +30,8 @@ data_Marvel = procesarDatasetPD.crear_lista_personajes(archivo,personajes_Marvel
 
 jug1 = procesarDatasetPD.elegir_personaje('Superman',data_DC)
 jug2 = procesarDatasetPD.elegir_personaje('Thor',data_Marvel)
-vida_jug1 = (jug1['Speed'] + jug1['Strength'] + jug1['Intelligence'] + jug1['Durability']*2).values[0]
-vida_jug2 = (jug2['Speed'].values + jug2['Strength'] + jug2['Intelligence'] + jug2['Durability']*2).values[0]
+vida_jug1 = (jug1['Speed'].values[0] + jug1['Strength'].values[0] + jug1['Intelligence'].values[0] + jug1['Durability']).values[0]
+vida_jug2 = (jug2['Speed'].values[0] + jug2['Strength'].values[0] + jug2['Intelligence'].values[0] + jug2['Durability']).values[0]
 jug1_nombre = jug1['Name'].values[0]
 jug2_nombre = jug2['Name'].values[0]
 

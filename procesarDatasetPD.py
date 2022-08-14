@@ -28,6 +28,7 @@ def crear_lista_personajes(nombre_Archivo, una_lista_personajes):
     df.at[162,'Speed']=90
     df.at[376,'Intelligence']=70
     df.at[376,'Speed'] = 90
+    df.at[381,'Speed'] = 50
     df.at[419,'Strength'] = 65
     df.at[419,'Speed'] = 60
     df.at[301,'Intelligence']=150
