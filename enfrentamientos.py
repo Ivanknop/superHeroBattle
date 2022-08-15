@@ -11,29 +11,30 @@ def texto_golpe (jug,golpe):
 
 def turno (atacante,defensor):
     golpe = 0
-    if ((atacante['Speed'].values[0]+random.randrange(0,100)) >= defensor['Speed'].values[0]):
+    if ((atacante['VEL'].values[0]+random.randrange(0,100)) >= defensor['VEL'].values[0]):
         if (atacante['Total'].values[0]*random.randrange(1,5) > defensor['Total'].values[0]*2):
-            golpe = ((atacante['Strength'].values[0]+atacante['Combat'].values[0])/2) + random.randrange(0,20)
+            golpe = ((atacante['FUE'].values[0]+atacante['COMBATE'].values[0])/2) + random.randrange(0,20)
     return max(golpe,0)
 
 def ganador (jug1,jug2,vida_jug1):
-    vencedor = f'Venció {jug2["Name"].values[0]}' if vida_jug1 < 0 else f'Venció {jug1["Name"].values[0]}'
-    return (f'En la batalla entre {jug1["Name"].values[0]} y {jug2["Name"].values[0]}, venció: {vencedor}')
+    vencedor = f'Venció {jug2["NOMBRE"].values[0]}' if vida_jug1 < 0 else f'Venció {jug1["NOMBRE"].values[0]}'
+    return (f'En la batalla entre {jug1["NOMBRE"].values[0]} y {jug2["NOMBRE"].values[0]}, venció: {vencedor}')
 
 
 archivo = "lista_de_personajes_estadisticas_pd.csv"
-personajes_DC = ['Superman','Batman','Flash III','Aquaman','Robin I','Joker','Penguin','Cyborg','Darkseid','Wonder Woman','Doomsday','Hal Jordan','Dr Manhattan','Lex Luthor','Harley Quinn','Bizarro','Swamp Thing','Punisher','Poison Ivy','Nightwing']
+personajes_DC = ['Superman','Chuck Norris','Batman','Flash III','Aquaman','Robin I','Joker','Penguin','Cyborg','Darkseid','Wonder Woman','Doomsday','Hal Jordan','Dr Manhattan','Goku','Lex Luthor','Harley Quinn','Bizarro','Swamp Thing','Punisher','Poison Ivy','Nightwing']
 personajes_Marvel =['Thor','Hulk','Wolverine','Magneto','Spider-Man','Iron Man','Captain America','Doctor Strange','Loki','Nick Fury','Professor X','Black Widow','Phoenix','Venom','Scarlet Witch','Kang','Deadpool','Black Panther','Ultron','Thanos']
 #preparar_dataset()
 data_DC = procesarDatasetPD.crear_lista_personajes(archivo,personajes_DC)
 data_Marvel = procesarDatasetPD.crear_lista_personajes(archivo,personajes_Marvel)
 
-jug1 = procesarDatasetPD.elegir_personaje('Superman',data_DC)
-jug2 = procesarDatasetPD.elegir_personaje('Thor',data_Marvel)
-vida_jug1 = (jug1['Speed'].values[0] + jug1['Strength'].values[0] + jug1['Intelligence'].values[0] + jug1['Durability']).values[0]
-vida_jug2 = (jug2['Speed'].values[0] + jug2['Strength'].values[0] + jug2['Intelligence'].values[0] + jug2['Durability']).values[0]
-jug1_nombre = jug1['Name'].values[0]
-jug2_nombre = jug2['Name'].values[0]
+jug1 = procesarDatasetPD.elegir_personaje('Captain America',data_Marvel)
+jug2 = procesarDatasetPD.elegir_personaje('Batman',data_DC)
+
+vida_jug1 = jug1['VIDA'].values[0] 
+vida_jug2 = jug2['VIDA'].values[0]
+jug1_nombre = jug1['NOMBRE'].values[0]
+jug2_nombre = jug2['NOMBRE'].values[0]
 
 while (vida_jug1 > 0) | (vida_jug2 > 0):
     golpe = turno (jug1,jug2)

@@ -16,7 +16,9 @@ def preparar_dataset():
         df = df.drop(columns=['Alignment'])
         #Limpiamos las filas con valores vacíos
         df = df.dropna()
-
+        #Renombramos las columnas
+        df = df.rename(columns={'Name':'NOMBRE','Intelligence':'INT','Strength':'FUE','Speed':'VEL','Durability':'DUR','Power':'POD','Combat':'COMBATE'})
+        df['VIDA'] = df['VEL']+ df['FUE'] + df['INT'] + df['DUR']
         #creamos nuevo csv
         df.to_csv(archivo , index=False)
     except FileNotFoundError:
@@ -25,26 +27,26 @@ def preparar_dataset():
 def crear_lista_personajes(nombre_Archivo, una_lista_personajes):
     df = pd.read_csv(nombre_Archivo)  
     #Correjir características de algunos personajes
-    df.at[162,'Speed']=90
-    df.at[376,'Intelligence']=70
-    df.at[376,'Speed'] = 90
-    df.at[381,'Speed'] = 50
-    df.at[419,'Strength'] = 65
-    df.at[419,'Speed'] = 60
-    df.at[301,'Intelligence']=150
+    df.at[162,'VEL']=90
+    df.at[376,'INT']=70
+    df.at[376,'VEL'] = 90
+    df.at[381,'VEL'] = 50
+    df.at[419,'FUE'] = 65
+    df.at[419,'VEL'] = 60
+    df.at[301,'INT']=150
     #setteamos el poder total con una fórmula propia
-    fuerza = df['Strength']
-    velocidad = df['Speed']
-    inteligencia = df['Intelligence']
-    poder = df['Power']
-    combate = df['Combat']
+    fuerza = df['FUE']
+    velocidad = df['VEL']
+    inteligencia = df['INT']
+    poder = df['POD']
+    combate = df['COMBATE']
     df['Total'] = (fuerza+velocidad+combate)*(inteligencia+poder)
      
-    return df.loc[df['Name'].isin(una_lista_personajes)]
+    return df.loc[df['NOMBRE'].isin(una_lista_personajes)]
 
 def elegir_personaje(nombre_personaje,data):
 
-    personaje = data.loc[data.Name == nombre_personaje]
+    personaje = data.loc[data.NOMBRE == nombre_personaje]
 
     return personaje
 
