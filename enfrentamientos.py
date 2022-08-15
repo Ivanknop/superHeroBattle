@@ -1,4 +1,4 @@
-import procesarDatasetPD 
+import prepararListaPersonajes 
 import random
 
 def texto_bloqueo(jug):
@@ -20,23 +20,17 @@ def ganador (jug1,jug2,vida_jug1):
     vencedor = f'Venció {jug2["NOMBRE"].values[0]}' if vida_jug1 < 0 else f'Venció {jug1["NOMBRE"].values[0]}'
     return (f'En la batalla entre {jug1["NOMBRE"].values[0]} y {jug2["NOMBRE"].values[0]}, venció: {vencedor}')
 
-
-archivo = "lista_de_personajes_estadisticas_pd.csv"
-personajes_DC = ['Superman','Chuck Norris','Batman','Flash III','Aquaman','Robin I','Joker','Penguin','Cyborg','Darkseid','Wonder Woman','Doomsday','Hal Jordan','Dr Manhattan','Goku','Lex Luthor','Harley Quinn','Bizarro','Swamp Thing','Punisher','Poison Ivy','Nightwing']
-personajes_Marvel =['Thor','Hulk','Wolverine','Magneto','Spider-Man','Iron Man','Captain America','Doctor Strange','Loki','Nick Fury','Professor X','Black Widow','Phoenix','Venom','Scarlet Witch','Kang','Deadpool','Black Panther','Ultron','Thanos']
 #preparar_dataset()
-data_DC = procesarDatasetPD.crear_lista_personajes(archivo,personajes_DC)
-data_Marvel = procesarDatasetPD.crear_lista_personajes(archivo,personajes_Marvel)
-
-jug1 = procesarDatasetPD.elegir_personaje('Captain America',data_Marvel)
-jug2 = procesarDatasetPD.elegir_personaje('Batman',data_DC)
+personajes = prepararListaPersonajes.listar_personajes()
+jug1 = prepararListaPersonajes.elegir_personaje('Captain America',personajes)
+jug2 = prepararListaPersonajes.elegir_personaje('Batman',personajes)
 
 vida_jug1 = jug1['VIDA'].values[0] 
 vida_jug2 = jug2['VIDA'].values[0]
 jug1_nombre = jug1['NOMBRE'].values[0]
 jug2_nombre = jug2['NOMBRE'].values[0]
 
-while (vida_jug1 > 0) | (vida_jug2 > 0):
+while (vida_jug1 > 0) & (vida_jug2 > 0):
     golpe = turno (jug1,jug2)
     if golpe == 0:
         print (texto_bloqueo(jug1_nombre))
