@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEGIR PERSONAJE</title>
+</head>
+<body>
+    <H1>ELIJA A SU PERSONAJE Y PREPÁRESE PARA PELEAR</H1>
+    <form method="POST" action="/select">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" name="nombre">
+        <button type="submit"><a href="{{url_for(select/{{id}})}}">ELEGIR</a></button>
+
+    </form>
+    <form action="{{url_for('personajes')}}">
+        <input type="submit" value="Tabla de personajes"/>
+    </form>
+    <form action="{{url_for('index')}}">
+        <input type="submit" value="Index"/>
+    </form>
+</body>
+</html>

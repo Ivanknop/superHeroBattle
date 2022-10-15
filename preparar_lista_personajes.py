@@ -21,12 +21,19 @@ def crear_lista_personajes(nombre_Archivo, una_lista_personajes):
     df['Total'] = (fuerza+velocidad+combate)*(inteligencia+poder)
     return df.loc[df['NOMBRE'].isin(una_lista_personajes)]
 
-def elegir_personaje(nombre_personaje,data):
+def elegir_personaje(nombre_personaje, data):
     personaje = data.loc[data.NOMBRE == nombre_personaje]
     return personaje
 
+def look_for_character(character_name):
+    df = pd.read_csv("lista_de_personajes_estadisticas_pd.csv")
+    a_hero = df.loc[df.NOMBRE == character_name]
+    return a_hero
+
 def listar_personajes():
+    
     archivo = "lista_de_personajes_estadisticas_pd.csv"
     personajes = ['Superman','Chuck Norris','Batman','Flash III','Aquaman','Robin I','Joker','Penguin','Cyborg','Darkseid','Wonder Woman','Doomsday','Hal Jordan','Dr Manhattan','Goku','Lex Luthor','Harley Quinn','Bizarro','Swamp Thing','Punisher','Poison Ivy','Nightwing','Thor','Hulk','Wolverine','Magneto','Spider-Man','Iron Man','Captain America','Doctor Strange','Loki','Nick Fury','Professor X','Black Widow','Phoenix','Venom','Scarlet Witch','Kang','Deadpool','Black Panther','Ultron','Thanos']
 
     return crear_lista_personajes(archivo,personajes)
+
