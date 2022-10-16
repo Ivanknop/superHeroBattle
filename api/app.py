@@ -1,3 +1,5 @@
+from concurrent.futures.process import _ExceptionWithTraceback
+import traceback
 from flask import Flask,redirect,url_for,render_template,request
 import pruebaDB
 
@@ -51,13 +53,26 @@ def choose_character():
     except:
           return render_template('error404.html')
 
-@app.route("/select/<string:name>",methods=["POST"])
-def select(name):
-    print (name)
+@app.route("/select",methods=['GET'])
+def select():
+    name_character = request.args.get("nombre")
     try:
-        print (pruebaDB.find_hero(name))
+        limit_str = str(request.args.get('limit'))
+        offset_str = str(request.args.get('offset'))
+        limit = 0
+        offset = 0
+        if(limit_str is not None) and (limit_str.isdigit()):
+            limit = int(limit_str)
+        if(offset_str is not None) and (offset_str.isdigit()):
+            offset = int(offset_str)
+        # Obtener el reporte
+        hero =pruebaDB.find_hero(name_character,limit=0, offset=0)
+        print (hero)
+        return render_template ('figth.html',hero=hero)
+        
     except:
-          return render_template('error404.html')
+          
+          return render_template(traceback)
 
 if __name__ == '__main__':
     #DEBUG is SET to TRUE. CHANGE FOR PROD

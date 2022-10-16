@@ -8,10 +8,10 @@
 </head>
 <body>
     <H1>ELIJA A SU PERSONAJE Y PREPÁRESE PARA PELEAR</H1>
-    <form method="POST" action="/select">
+    <form method="GET" action="/select">
         <label for="nombre">Nombre:</label>
         <input id="nombre" type="text" name="nombre">
-        <button type="submit"><a href="{{url_for(select/{{id}})}}">ELEGIR</a></button>
+        <input type="submit" value="ELEGIR">
 
     </form>
     <form action="{{url_for('personajes')}}">

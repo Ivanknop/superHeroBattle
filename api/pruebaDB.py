@@ -130,18 +130,22 @@ def show(limit=0, offset=0):
         list_hero.append(hero)
     return list_hero
 
-def find_hero(name):
+def find_hero(name,limit=0, offset=0):
     # Crear la session
     Session = sessionmaker(bind=engine)
     session = Session()
-
     # Buscar el héroe que se desea 
     query = db.session.query(Hero).filter(Hero.nombre == name)
-    a_hero = db.query.first()
+    if limit > 0:
+        query = query.limit(limit)
+        if offset>0:
+            query = query.offset(offset)
+
+    a_hero = query.first()
     if a_hero:
-         print('Hola! Acá estoy!', a_hero)
+        return a_hero
     else:
-        print(f'{name} no se encentra en la BD')
+        return (f'{name} no se encentra en la BD')
 
 def delete_hero(name):
     # Crear la session
