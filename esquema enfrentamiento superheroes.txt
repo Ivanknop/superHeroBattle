@@ -1,0 +1,30 @@
+Combate de héroes y villanos
+
+El objetivo es comparar los poderes de los personajes de varias sagas tales Dragon Ball, Marvel, DC u otros.
+El usuario puede elegir un personaje principal de la lista disponible y ponerlo a enfrentarse con uno o varios a elección. El programa mostrará las imágenes de los personajes junto a los valores de poder de cada uno seleccionado. Se mostrará quién vence en el enfrentamiento.
+
+Versiones:
+1) Elegir dos personajes y mostrar el nivel de poder de cada uno y determinar al vencedor
+1.1) Solamente DB y Marvel
+2) Armar equipos de personajes y enfrentarlos. Se deberá mostrar el bando vencedor y cuáles resultan derrotados de cada uno
+2.1) Incorporar DC y otras sagas
+3) Almacenar las batallas seleccionadas y rankear las mismas
+4) Permitir armar rankings de los 10 más..... a decisión del usuario
+
+
+Tareas
+A) Socializar los datasets de caracteres de https://www.kaggle.com/datasets/magshimimsummercamp/superheroes-info-and-stats?select=superheroes_stats.csv
+A.1) Seleccionar personajes por saga y armar una nueva DB que solamente tenga Nombre-Poder-Saga
+A.2) De ser necesario, establecer un algoritmo que permita hacer equivalentes los poderes de las diferentes sagas. Evaluar como se hace en https://www.superherodb.com/
+A.3) Las imágenes de los personajes no se encuentran en los datasets, con lo cual deberá incorporarse en una siguiente etapa
+
+B) Armar una interfaz primero en consola.
+C.1) Armar una interfaz para escritorio
+C.2) Armar una interfaz para web
+
+C) Exportar los resultados
+C.1) Almacenar los resultados y permitir abrirlos al abrir la app de nuevo
+
+D) Establecer un sistema de logueo
+D.1) Establecer un sistema de autenticación que almacene los usuarios y les vincule los resultados ya realizados
+

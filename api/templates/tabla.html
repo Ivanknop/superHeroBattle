@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% include 'header.html' %}
+
 <h1>TABLA DE PERSONAJES</h1>
-    <form action="{{url_for('index')}}">
-        <input type="submit" value="Index"/>
-    </form>
-    <table border="1">
+   
+    <table class="table bg-info">
         <thead cellpadding="1.0" cellspacing="1.0">
             <tr>
                 <th>Nombre</th>
@@ -28,5 +19,8 @@
             {% endfor %}
         </thead>
     </table>
-</body>
-</html>
+
+    
+
+
+{% include 'footer.html' %}

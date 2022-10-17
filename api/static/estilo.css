@@ -1,0 +1,25 @@
+@font-face {
+    font-family:'BADABOOM';
+    src: url('../static/BADABB__.TTF');
+}
+*{margin: 0;padding: 0;font-family: 'BADABOOM';}
+.table th{font-size: 1.5em;}
+.logo{margin-left: 35%;}
+.nav-local {background-color: #1CA1C9;}
+h1{text-align: center;
+font-family: 'BADABOOM';}
+body {background-color: #428396;}
+
+.local-form{margin-left: 40%;}
+.local-form label {font-size: 2em;}
+.local-form input {height: 2em;width: 15em;}
+.button-chose-character {margin-left: 10%}
+
+footer{ 
+    bottom: 0%;
+    width: 100%; 
+    height: 3vw;
+    justify-content: center; 
+}
+footer p, .icon{font-size: 0.8vw; text-align: center;-webkit-text-stroke: black; }
+footer .icon{color: white}
