@@ -1,5 +1,5 @@
 import unittest
-from hero import Hero
+from api.hero import Hero
 
 class TestHero(unittest.TestCase):
     def test_getters(self):

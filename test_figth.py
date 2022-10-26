@@ -1,6 +1,6 @@
 import unittest
-from figth import Figth
-from hero import Hero
+from api.figth import Figth
+from api.hero import Hero
 
 class TestFigth(unittest.TestCase):
     

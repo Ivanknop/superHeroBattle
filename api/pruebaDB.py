@@ -158,9 +158,3 @@ def delete_hero(name):
 
     print(f'{name} ya no se encuentra en la BD')
 
-#create_schema()
-#fill() 
-#delete_hero('Bill Harken')
-#show()
-#find_hero('Batman')
-#find_hero('Pokemón')

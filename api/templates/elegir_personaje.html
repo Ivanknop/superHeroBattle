@@ -4,11 +4,29 @@
     <br><br><br>
     <div class="local-form">
     <form  method="GET" action="/select">
-        <label for="nombre">Nombre:</label>
-        <input id="nombre" type="text" name="nombre">
-        <br>
+    <table class="table bg-info">
+        <tr>
+            <th>
+                <h4>PERSONAJE PRINCIPAL</h4>
+            </th>
+            <th>
+                <h4>RIVAL</h4>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <label for="heroe">Nombre:</label>
+                <input id="heroe" type="text" name="heroe">
+                <br>
+            </td>
+            <TD>
+                <label for="rival">Nombre:</label>
+                <input id="rival" type="text" name="rival">
+                <br>
+            </TD>
+        </tr>
         <input class="button-chose-character" type="submit" value="ELEGIR">
-
+    </table>
     </form>
 </div>
 {% include 'footer.html' %}

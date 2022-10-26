@@ -15,16 +15,18 @@
     </tr>
     
     <tr>
-        <td>{{hero.get_name()}}</td>
-        <td>{{hero.get_strong()}}</td>
-        <td>{{hero.get_speed()}}</td>
-        <td>{{hero.get_toughness()}}</td>
-        <td>{{hero.get_intelligence()}}</td>
-        <td>{{hero.get_combat()}}</td>
-        <td>{{hero.get_total_power()}}</td>
-        <td>{{hero.get_life()}}</td>
+        <td>{{hero[0].get_name()}}</td>
+        <td>{{hero[0].get_strong()}}</td>
+        <td>{{hero[0].get_speed()}}</td>
+        <td>{{hero[0].get_toughness()}}</td>
+        <td>{{hero[0].get_intelligence()}}</td>
+        <td>{{hero[0].get_combat()}}</td>
+        <td>{{hero[0].get_total_power()}}</td>
+        <td>{{hero[0].get_life()}}</td>
         
     </tr>
     <table class="table bg-info">
+        <br><br><br>
+    <img src="data:image/png;base64,{{hero[1]}}" alt="">
 
 {% include 'footer.html' %}
