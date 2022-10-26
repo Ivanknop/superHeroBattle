@@ -22,14 +22,6 @@ config_path_name = os.path.join(script_path, name_file)
 
 db= SQLAlchemy()
 
-class Comic():
-    __tablename__ = "comic"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-       
-    def __repr__(self):
-        return f"comic:{self.name}"
-
 class Hero(base):
     __tablename__ = "hero"
     id = db.Column(db.Integer, primary_key=True)
@@ -42,12 +34,7 @@ class Hero(base):
     combate = db.Column(db.Float)
     total = db.Column(db.Float)
     vida = db.Column(db.Float)
-    #comic_id = db.Column(Integer, ForeignKey("comic.id"))
 
-    #comic = relationship("Comic")
-
-    #def __repr__(self):
-     #   return f"Soy {self.nombre}"
     def get_name(self):
         return self.nombre
     def get_intelligence(self):
@@ -74,19 +61,6 @@ def create_schema():
 def drop_schema():
     # Borrar todos las tablas existentes en la base de datos
     base.metadata.drop_all(engine)
-
-def insert_comic(name):
-    # Crear la session
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    # Crear una nueva nacionalidad
-    a_comic = Comic(nombre=name)
-
-    # Agregar el comic a la DB
-    db.session.add(a_comic)
-    db.session.commit()
-    print(a_comic)
 
 def insert_hero(nombre, inteligencia, fuerza, velocidad, dureza, poder, combate, total, vida):
     # Crear la session
@@ -145,7 +119,7 @@ def find_hero(name,limit=0, offset=0):
     if a_hero:
         return a_hero
     else:
-        return (f'{name} no se encentra en la BD')
+        return (f'{name} no se encuentra en la BD')
 
 def delete_hero(name):
     # Crear la session

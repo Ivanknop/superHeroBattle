@@ -3,7 +3,7 @@ import io,base64
 import matplotlib.pyplot  as plt
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from hero import Hero
+from api.hero import Hero
 import numpy as np
 
 class Figth():
@@ -29,16 +29,14 @@ class Figth():
             return self.get_fighter_two(), self.get_fighter_one()
 
     def figth(self): #las peleas son a muerte o por rounds (?)
-        hit_list=[]
+        
         hero_hit, hero_defender = self.who_hit()
-        hit_list.append(f'Golpeó {hero_hit.get_name()}')
         while hero_defender.is_alive():
             if hero_hit.get_characteristics()['total']*random.randrange(1,9) > hero_defender.get_characteristics()['total']*random.randrange(1,9):
                 damage = hero_hit.give_hit()
                 hero_defender.take_hit(damage)   
-            hero_hit, hero_defender = self.who_hit()    
-            hit_list.append(f'Golpeó {hero_hit.get_name()}')
-        return hit_list
+            hero_hit, hero_defender = self.who_hit()
+        return hero_hit
        
     def show(self):
         hero_one=self.get_fighter_one().get_characteristics()
