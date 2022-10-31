@@ -35,9 +35,14 @@ class Figth():
         while hero_defender.is_alive():
             if hero_hit.get_characteristics()['total']*random.randrange(1,9) > hero_defender.get_characteristics()['total']*random.randrange(1,9):
                 damage = hero_hit.give_hit()
-                hero_defender.take_hit(damage)   
+                hero_defender.take_hit(damage)
+                hit_list.append(f'{hero_hit.hit_text(damage)}')
+            else:
+                hit_list.append(f'{hero_hit.bloq_text()}')   
             hero_hit, hero_defender = self.who_hit()    
-            hit_list.append(f'Golpeó {hero_hit.get_name()}')
+        
+        hit_list.append (f'La batalla ha terminado. Vencedor {hero_hit.get_name()}')
+
         return hit_list
        
     def show(self):
@@ -63,8 +68,8 @@ class Figth():
         ax.set_xticks(x, labels)
         ax.legend()
 
-        ax.bar_label(rects1, padding=3)
-        ax.bar_label(rects2, padding=3)
+        #ax.bar_label(rects1, padding=3)
+        #ax.bar_label(rects2, padding=3)
 
         fig.tight_layout()
         image_html = io.BytesIO()

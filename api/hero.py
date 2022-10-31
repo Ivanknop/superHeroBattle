@@ -1,3 +1,4 @@
+import random
 class Hero:
     "creat a hero"
     def __init__(self, name, life, strength, speed, intelligence, hardness, power, combat, total):
@@ -28,3 +29,11 @@ class Hero:
 
     def __str__(self): #está mal, acomodarlo
          return str(self.characteristics)
+        
+    def bloq_text(self):
+        frases = [f'{self.get_name()} no pudo dar el golpe',f'{self.get_name()} erró',f'{self.get_name()} no fue suficientemente veloz',f'Han esquivado a {self.get_name()}']
+        return frases[random.randrange(0,len(frases))]
+
+    def hit_text (self, golpe):
+       frases = [f'{self.get_name()} produce un daño igual a {golpe}',f'{self.get_name()} pega fuerte y quita {golpe} de vida',f'El ataque de {self.get_name()} produce {golpe} en su rival',f'Ataque exitoso de {self.get_name()} produciendo un daño de {golpe}']
+       return frases[random.randrange(0,len(frases))]

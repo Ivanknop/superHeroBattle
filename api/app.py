@@ -41,7 +41,18 @@ def personajes():
 
 @app.route("/elegir_personaje")
 def choose_character():
-    return render_template('elegir_personaje.html')
+    limit_str = str(request.args.get('limit'))
+    offset_str = str(request.args.get('offset'))
+    limit = 0
+    offset = 0
+    if(limit_str is not None) and (limit_str.isdigit()):
+        limit = int(limit_str)
+    if(offset_str is not None) and (offset_str.isdigit()):
+        offset = int(offset_str)
+        # Obtener el reporte
+
+    data = handler_db.show(limit=limit, offset=offset)
+    return render_template('elegir_personaje.html',hero_db=data)
     
 @app.route("/select",methods=['GET'])
 def select():

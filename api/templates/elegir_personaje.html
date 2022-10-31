@@ -15,13 +15,21 @@
         </tr>
         <tr>
             <td>
-                <label for="heroe">Nombre:</label>
-                <input id="heroe" type="text" name="heroe" required>
+                <label for="heroe">Nombre:</label>                
+                <select name="heroe" id="heroe">
+                    {% for hero in hero_db %}
+                        <option value="{{hero.get_name()}}">{{hero.get_name()}}
+                    {% endfor %}
+                    </select>
                 <br>
             </td>
             <TD>
                 <label for="rival">Nombre:</label>
-                <input id="rival" type="text" name="rival" required>
+                <select name="rival" id="rival">
+                    {% for rival in hero_db %}
+                        <option value="{{rival.get_name()}}">{rival.get_name()}}
+                    {% endfor %}
+                </select>
                 <br>
             </TD>
         </tr>
