@@ -27,7 +27,7 @@ class Hero:
     def is_alive(self):
         return self.get_life() > 0
 
-    def __str__(self): #está mal, acomodarlo
+    def __str__(self): 
          return str(self.characteristics)
         
     def bloq_text(self):

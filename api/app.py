@@ -1,6 +1,6 @@
-from concurrent.futures.process import _ExceptionWithTraceback
+#from concurrent.futures.process import _ExceptionWithTraceback
 import traceback
-from flask import Flask, jsonify, redirect,url_for,render_template,request
+from flask import Flask, jsonify, render_template, request
 import handler_db
 from figth import Figth
 from hero import Hero
@@ -18,8 +18,8 @@ def index():
     return render_template('index.html')
 
 # Ruta que se ingresa por la ULR 127.0.0.1:5000/pulsaciones
-@app.route("/personajes")
-def personajes():
+@app.route("/characters")
+def characters():
     try:
         # Obtener de la query string los valores de limit y offset
         limit_str = str(request.args.get('limit'))
@@ -33,13 +33,12 @@ def personajes():
         # Obtener el reporte
         data = handler_db.show(limit=limit, offset=offset)
         # Renderizar el temaplate HTML pulsaciones.html
-        return render_template('tabla.html', data=data)
+        return render_template('table.html', data=data)
     except:
-        
         print(jsonify({'trace': traceback.format_exc()}))
-        return render_template('error404.html')
+        
 
-@app.route("/elegir_personaje")
+@app.route("/choose_character")
 def choose_character():
     limit_str = str(request.args.get('limit'))
     offset_str = str(request.args.get('offset'))
@@ -52,12 +51,12 @@ def choose_character():
         # Obtener el reporte
 
     data = handler_db.show(limit=limit, offset=offset)
-    return render_template('elegir_personaje.html',hero_db=data)
+    return render_template('choose_character.html',hero_db=data)
     
 @app.route("/select",methods=['GET'])
 def select():
     name_character = request.args.get("heroe")
-    name_rival = request.args.get("rival")
+    name_oponent = request.args.get("rival")
     try:
         limit_str = str(request.args.get('limit'))
         offset_str = str(request.args.get('offset'))
@@ -69,14 +68,14 @@ def select():
             offset = int(offset_str)
         # Obtener el reporte
         hero_db = handler_db.find_hero(name_character,limit=0, offset=0)
-        rival_db = handler_db.find_hero(name_rival,limit=0, offset=0)
+        oponent_db = handler_db.find_hero(name_oponent,limit=0, offset=0)
         a_hero = convert_Hero_from_db(hero_db) 
-        a_rival = convert_Hero_from_db(rival_db) 
-        enfrentamiento = Figth(a_hero,a_rival)
-        battle = enfrentamiento.figth()
+        a_oponent = convert_Hero_from_db(oponent_db) 
+        confrontation = Figth(a_hero,a_oponent)
+        battle = confrontation.figth()
         data = []
         data.append(hero_db)
-        data.append(enfrentamiento.show())
+        data.append(confrontation.show())
         data.append(battle)
         
         return render_template ('figth.html',hero=data)
@@ -84,11 +83,8 @@ def select():
     except:
           return jsonify({'trace': traceback.format_exc()})  #esta excepción hay que acomodarla
 
-
-
-
 def convert_Hero_from_db (a_hero_db):
-    if (type(a_hero_db)== str):
+    if (type(a_hero_db) == str):
         return Hero(a_hero_db,0,0,0,0,0,0,0,0) 
     else:
         a_hero = Hero(a_hero_db.get_name(), a_hero_db.get_life(), a_hero_db.get_strong(), a_hero_db.get_speed(),a_hero_db.get_intelligence(), a_hero_db.get_toughness(), a_hero_db.get_power(), a_hero_db.get_combat(), a_hero_db.get_total_power())

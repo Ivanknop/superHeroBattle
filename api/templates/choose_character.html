@@ -1,6 +1,6 @@
 {% include 'header.html' %}
 
-    <H1>ELIJA A SU PERSONAJE Y PREPaRESE PARA PELEAR</H1>
+    <H1>ELIJA A SU PERSONAJE Y PREPÁRESE PARA PELEAR</H1>
     <br><br><br>
     <div class="local-form">
     <form  method="GET" action="/select">
@@ -27,7 +27,7 @@
                 <label for="rival">Nombre:</label>
                 <select name="rival" id="rival">
                     {% for rival in hero_db %}
-                        <option value="{{rival.get_name()}}">{rival.get_name()}}
+                        <option value="{{rival.get_name()}}">{{rival.get_name()}}
                     {% endfor %}
                 </select>
                 <br>
