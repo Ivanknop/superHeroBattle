@@ -56,7 +56,7 @@ def choose_character():
 @app.route("/select",methods=['GET'])
 def select():
     name_character = request.args.get("heroe")
-    name_oponent = request.args.get("rival")
+    name_opponent = request.args.get("rival")
     try:
         limit_str = str(request.args.get('limit'))
         offset_str = str(request.args.get('offset'))
@@ -68,16 +68,16 @@ def select():
             offset = int(offset_str)
         # Obtener el reporte
         hero_db = handler_db.find_hero(name_character,limit=0, offset=0)
-        oponent_db = handler_db.find_hero(name_oponent,limit=0, offset=0)
+        opponent_db = handler_db.find_hero(name_opponent,limit=0, offset=0)
         a_hero = convert_Hero_from_db(hero_db) 
-        a_oponent = convert_Hero_from_db(oponent_db) 
-        confrontation = Figth(a_hero,a_oponent)
+        opponent = convert_Hero_from_db(opponent_db) 
+        confrontation = Figth(a_hero,opponent)
         battle = confrontation.figth()
         data = []
         data.append(hero_db)
         data.append(confrontation.show())
         data.append(battle)
-        
+        data.append(opponent_db)
         return render_template ('figth.html',hero=data)
         
     except:

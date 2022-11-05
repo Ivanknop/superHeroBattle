@@ -1,22 +1,22 @@
 {% include 'header.html' %}
 
-    <H1>ELIJA A SU PERSONAJE Y PREPÁRESE PARA PELEAR</H1>
+    <H1 class="h1">ELIJA A SU PERSONAJE Y PREPARESE PARA PELEAR</H1>
     <br><br><br>
     <div class="local-form">
     <form  method="GET" action="/select">
     <table class="table bg-info">
         <tr>
             <th>
-                <h4>PERSONAJE PRINCIPAL</h4>
+                <h2 class="h2-hero">PERSONAJE PRINCIPAL</h4>
             </th>
             <th>
-                <h4>RIVAL</h4>
+                <h2 class="h2-hero">RIVAL</h4>
             </th>
         </tr>
         <tr>
             <td>
-                <label for="heroe">Nombre:</label>                
-                <select name="heroe" id="heroe">
+                <label class="select_hero" for="heroe">Nombre:</label>                
+                <select class="select_hero" name="heroe" id="heroe">
                     {% for hero in hero_db %}
                         <option value="{{hero.get_name()}}">{{hero.get_name()}}
                     {% endfor %}
@@ -24,8 +24,8 @@
                 <br>
             </td>
             <TD>
-                <label for="rival">Nombre:</label>
-                <select name="rival" id="rival">
+                <label class="select_hero" for="rival">Nombre:</label>
+                <select class="select_hero" name="rival" id="rival">
                     {% for rival in hero_db %}
                         <option value="{{rival.get_name()}}">{{rival.get_name()}}
                     {% endfor %}
@@ -33,8 +33,9 @@
                 <br>
             </TD>
         </tr>
-        <input class="button-chose-character" type="submit" value="ELEGIR">
+
     </table>
+    <input class="button-chose-character" type="submit" value="ELEGIR">
     </form>
 </div>
 {% include 'footer.html' %}

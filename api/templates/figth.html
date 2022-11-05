@@ -1,8 +1,9 @@
 {% include 'header.html' %}
 
 
-   <h1> COMBATE </h1>
+   <h1 class="h1"> COMBATE </h1>
    <table class="table bg-info">
+    <h3>HEROE</h3>
     <tr>
         <th>Nombre</th>
         <th>Fuerza</th>
@@ -13,7 +14,6 @@
         <th>Poder Total</th>            
         <th>Vida</th>
     </tr>
-    
     <tr>
         <td>{{hero[0].get_name()}}</td>
         <td>{{hero[0].get_strong()}}</td>
@@ -22,16 +22,43 @@
         <td>{{hero[0].get_intelligence()}}</td>
         <td>{{hero[0].get_combat()}}</td>
         <td>{{hero[0].get_total_power()}}</td>
-        <td>{{hero[0].get_life()}}</td>
-        
+        <td>{{hero[0].get_life()}}</td>     
     </tr>
-    <table class="table bg-info">
-        <br><br><br>
-    <img src="data:image/png;base64,{{hero[1]}}" alt="">
-    <br><br><br>
-    <h2> ¡A Pelear! </h2><br> 
-    {% for t in hero[2] %}
-    <p>{{t}}</p>
-    {% endfor %}
-
+   </table>
+     
+   <table class="table bg-info">
+    <h3>RIVAL</h3>
+    <tr>
+        <th>Nombre</th>
+        <th>Fuerza</th>
+        <th>Velocidad</th>
+        <th>Dureza</th>
+        <th>Inteligencia</th>
+        <th>Habilidad de Combate</th>
+        <th>Poder Total</th>            
+        <th>Vida</th>
+    </tr>
+    <tr>
+        <td>{{hero[3].get_name()}}</td>
+        <td>{{hero[3].get_strong()}}</td>
+        <td>{{hero[3].get_speed()}}</td>
+        <td>{{hero[3].get_toughness()}}</td>
+        <td>{{hero[3].get_intelligence()}}</td>
+        <td>{{hero[3].get_combat()}}</td>
+        <td>{{hero[3].get_total_power()}}</td>
+        <td>{{hero[3].get_life()}}</td>  
+    </tr>
+   </table>
+        <table class="table bg-info">
+        <th>
+        <img src="data:image/png;base64,{{hero[1]}}" alt="">
+    </th>
+        <th>
+        <h2 class="h2-hero"> ¡A Pelear! </h2>
+        <br> 
+        {% for round in hero[2] %}
+            <p class="figth">{{round}}</p>
+        {% endfor %}
+    </th>
+    </table>
 {% include 'footer.html' %}

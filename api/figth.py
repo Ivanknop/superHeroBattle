@@ -31,7 +31,6 @@ class Figth():
     def figth(self): #las peleas son a muerte o por rounds (?)
         hit_list=[]
         hero_hit, hero_defender = self.who_hit()
-        hit_list.append(f'Golpeó {hero_hit.get_name()}')
         while hero_defender.is_alive():
             if hero_hit.get_characteristics()['total']*random.randrange(1,9) > hero_defender.get_characteristics()['total']*random.randrange(1,9):
                 damage = hero_hit.give_hit()
