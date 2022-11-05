@@ -58,13 +58,14 @@ class Figth():
         width = 0.35  # the width of the bars
 
         fig, ax = plt.subplots()
-        rects1 = ax.bar(x - width/2, fighter_one, width, label=self.get_fighter_one().get_name())
-        rects2 = ax.bar(x + width/2, fighter_two, width, label=self.get_fighter_two().get_name())
+        rects1 = ax.bar(x - width/2, fighter_one, width, label=f'{self.get_fighter_one().get_name()} - Hero')
+        rects2 = ax.bar(x + width/2, fighter_two, width, label=f'{self.get_fighter_one().get_name()} - Opponent')
 
         # Add some text for labels, title and custom x-axis tick labels, etc.
         ax.set_ylabel('Values')
+        ax.set_xlabel('Qualities')
+        ax.set_xticklabels( ['','Strength', 'Speed', 'Intelligence', 'Hardness', 'Power', 'Combat'])
         ax.set_title('Comparison of Qualities')
-        ax.set_xticks(x, labels)
         ax.legend()
 
         #ax.bar_label(rects1, padding=3)
