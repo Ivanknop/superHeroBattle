@@ -2,15 +2,19 @@ import os
 import csv
 
 import sqlalchemy
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy
+import requests,json
+from flask import Flask
 
 # Crear el motor (engine) de la base de datos
 engine = sqlalchemy.create_engine("sqlite:///super_hero.db")
 base = declarative_base()
+app=Flask(__name__)
 
+# Indicamos al sistema (app) de donde leer la base de datos
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///super_hero.db"
 #from config import config
 
 # Obtener la path de ejecución actual del script
@@ -21,6 +25,7 @@ name_file = 'lista_de_personajes_estadisticas_pd.csv'
 config_path_name = os.path.join(script_path, name_file)
 
 db= SQLAlchemy()
+db.init_app(app)
 
 class Hero(base):
     __tablename__ = "hero"
@@ -132,3 +137,4 @@ def delete_hero(name):
 
     print(f'{name} ya no se encuentra en la BD')
 
+find_hero('batman')
