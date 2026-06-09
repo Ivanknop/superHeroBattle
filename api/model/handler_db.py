@@ -39,7 +39,7 @@ def _to_domain(hero_db):
         "hardness": hero_db.get_toughness(), 
         "power": hero_db.get_power(),        
         "combat": hero_db.get_combat(),      
-        "total": hero_db.get_total_power(),
+        "total": hero_db.get_total(),
     }
     return Hero(hero_db.get_name(), hero_db.get_hp(), characteristics)
 

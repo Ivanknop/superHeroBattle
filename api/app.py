@@ -10,13 +10,13 @@ import random
 def hero_to_session(hero):
     return {
         "name": hero.get_name(),
-        "hp": hero.get_hp(),
+        "hp": hero.get_life(),
         "characteristics": hero.get_characteristics()
     }
 
 def hero_from_session(data):
     characteristics = {
-        "strong": data["characteristics"]["strong"],
+        "strength": data["characteristics"]["strength"],
         "hardness": data["characteristics"]["hardness"],
         "combat": data["characteristics"]["combat"],
         "power": data["characteristics"]["power"],

@@ -1,0 +1,101 @@
+{% include 'header.html' %}
+
+{% if finished %}
+    <section class="winner-banner">
+        Ganador: {{ winner }} SuperHeroe ({{ winner_role }})
+    </section>
+{% endif %}
+
+<h1>Batalla de SuperHeroes</h1>
+<section class="battle-container">
+    <div class="hero-card">
+        <h2>{{ fighter_one.name }}</h2>
+
+        <div class="hp-box">
+            <span class="hp-label">HP</span>
+            <span class="hp-value">{{ fighter_one.hp | round | int }}</span>
+        </div>
+    </div>
+
+    <div class="versus">VS</div>
+
+    <div class="hero-card">
+        <h2>{{ fighter_two.name }}</h2>
+
+        <p>
+            Tipo: {{ fighter_two.type1 }}
+            {% if fighter_two.type2 %}/ {{ fighter_two.type2 }}{% endif %}
+        </p>
+
+        <div class="hp-box">
+            <span class="hp-label">HP</span>
+            <span class="hp-value">{{ fighter_two.hp | round | int }}</span>
+        </div>
+    </div>
+</section>
+
+{% if not finished %}
+<div class="fight-controls">
+    <div class="luck-bar">
+        <span class="luck-current">
+            Jugador <strength>{{ attacker_luck }}</strength>
+        </span>
+        <span>|</span>
+        <span class="luck-current">
+            Rival <strength>{{ defender_luck }}</strength>
+        </span>
+
+        {% if pending_attacker_luck is not none %}
+            <span class="luck-pending">
+                Nueva tirada → Jugador <strength>{{ pending_attacker_luck }}</strength>
+                / Rival <strength>{{ pending_defender_luck }}</strength>
+            </span>
+            <form class="luck-form" action="{{ url_for('accept_luck') }}" method="post">
+                <button type="submit" class="luck-btn accept-luck">Aceptar</button>
+            </form>
+            <form class="luck-form" action="{{ url_for('reject_luck') }}" method="post">
+                <button type="submit" class="luck-btn reject-luck">Rechazar</button>
+            </form>
+
+        {% elif not luck_used_this_turn %}
+            <form class="luck-form" action="{{ url_for('roll_luck') }}" method="post">
+                <button type="submit" class="luck-btn roll-luck">🎲 Tirar suerte</button>
+            </form>
+
+        {% else %}
+            <span class="luck-used">✓ Suerte ya tirada</span>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% if finished %}
+    <section class="winner-box">
+        <h2>Vencedor: {{ winner }}</h2>
+
+        <a href="{{ url_for('choose_character') }}" class="button-chose-character">
+            Nueva batalla
+        </a>
+    </section>
+{% else %}
+    <form action="{{ url_for('next_turn') }}" method="post" class="next-turn-form">
+        <button type="submit" class="button-chose-character">
+            Nuevo turno
+        </button>
+    </form>
+{% endif %}
+
+<section class="battle-events">
+    <h3>Historial de batalla</h3>
+
+    {% if events %}
+        <ul>
+            {% for event in events %}
+                <li>{{ event }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>La batalla está por comenzar.</p>
+    {% endif %}
+</section>
+
+{% include 'footer.html' %}

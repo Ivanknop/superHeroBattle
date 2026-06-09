@@ -6,7 +6,7 @@ from model.hero_db import db
 from model.handler_db import insert_hero
 
 script_path = os.path.dirname(os.path.realpath(__file__))
-csv_path = os.path.join(script_path, "files", "lista_de_personajes_estadisticas.csv")
+csv_path = os.path.join(script_path, "files", "superheroes.csv")
 
 def create_schema():
     db.create_all()
@@ -19,15 +19,15 @@ def fill():
         data = list(csv.DictReader(fi))
         for row in data:
             insert_hero(
-                row["NOMBRE"],
-                row["FUE"],
-                row["INT"],
-                row["DUR"],
-                row["POD"],
-                row["VEL"],
-                row["VIDA"],
-                row["COMBATE"],
-                row["Total"]
+                row["name"],
+                row["intelligence"],
+                row["strength"],
+                row["speed"],
+                row["hardness"],
+                row["power"],
+                row["combat"],
+                row["total"],
+                row["hp"]
             )
 
 if __name__ == "__main__":
