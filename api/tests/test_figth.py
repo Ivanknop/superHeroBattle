@@ -30,7 +30,7 @@ def test_fighter():
     assert round.get_fighter_one().get_name() == 'Peuchele'
     assert round.get_fighter_two().get_name() == 'Rambo'   
 
-    events = round.play_turn(player_luck=0, opponent_luck=0)
+    events = round.play_turn(attacker_luck=0, defender_luck=0)
 
     assert len(events) == 1
     assert peuchele.is_alive() is False
