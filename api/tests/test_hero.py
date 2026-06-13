@@ -20,7 +20,7 @@ def test_hero_has_expected_characteristics():
     assert rambo.get_characteristics()["speed"] == 50
     assert rambo.get_characteristics()["intelligence"] == 40
     assert rambo.get_characteristics()["strength"] == 30    
-    assert rambo.get_life() == 50
+    assert rambo.get_vitality() == 50
 
     assert rambo.offensive_power() == 50
     assert rambo.defensive_power() == 37 

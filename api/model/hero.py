@@ -12,6 +12,3 @@ class Hero(Entity):
 
     def initiative(self):
         return self.characteristics["speed"]+ self.characteristics["intelligence"] * 0.5 + self.characteristics["combat"] * 0.5
-       
-    def get_life(self):
-        return self.get_vitality()

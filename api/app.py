@@ -10,7 +10,7 @@ import random
 def hero_to_session(hero):
     return {
         "name": hero.get_name(),
-        "hp": hero.get_life(),
+        "hp": hero.get_vitality(),
         "characteristics": hero.get_characteristics()
     }
 
